@@ -21,8 +21,8 @@ function statsFromBills(bills: Bill[]): Record<string, { totalBusiness: number; 
     const id = b.vendorId;
     if (!map[id]) map[id] = { totalBusiness: 0, totalPaid: 0, totalDue: 0 };
     map[id].totalBusiness += b.total;
-    map[id].totalPaid += b.amountPaid;
-    map[id].totalDue += b.total - b.amountPaid;
+    map[id].totalPaid += b.amountPaid ?? 0;
+    map[id].totalDue += b.total - (b.amountPaid ?? 0);
   });
   return map;
 }
